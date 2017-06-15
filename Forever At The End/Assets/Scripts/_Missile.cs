@@ -6,6 +6,7 @@ public class _Missile : MonoBehaviour {
 
 	public Vector3 target;
 	public GameObject explosion;
+	public int turretSelect;
 
 	// Use this for initialization
 	void Start () {

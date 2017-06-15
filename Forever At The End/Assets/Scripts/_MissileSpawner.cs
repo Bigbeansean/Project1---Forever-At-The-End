@@ -2,34 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class _MissileSpawner : MonoBehaviour {
-
-	public GameObject missilePrefab;
-	public float fireTime;
-	public float fireRate;
-	public int ammo;
-	public int maxAmmo;
-	public int warningAmmo;
+public class _MissileSpawner : MonoBehaviour
+{
+	private GameObject clone;
+	public GameObject cursorPrefab;
 	public float missileSpeed;
+	public string turret;
+	public string keyboardInput;
 
 	// Use this for initialization
-	void Start () {
-		ammo = maxAmmo;
+	void Start ()
+	{ 
+		if (gameObject.transform.position.x == 0) {
+			turret = "1";
+			keyboardInput = "f";
+		}
+		if (gameObject.transform.position.x == -4) {
+			turret = "2";
+			keyboardInput = "d";
+		}
+		if (gameObject.transform.position.x == 4) {
+			turret = "3";
+			keyboardInput = "g";
+		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		fireTime -= Time.deltaTime;
-		if (fireTime <= 0 && Input.GetKeyDown("q") && ammo > 0) {
-			FireMissile();
+	void Update ()
+	{
+		if (Input.GetKeyDown (keyboardInput)) {
+			clone = Instantiate (cursorPrefab, transform.position, Quaternion.identity);
+			CursorHold cursorHold = clone.GetComponent<CursorHold> ();
+			cursorHold.turretSelect = keyboardInput;
 		}
-	}
-
-	void FireMissile(){
-		Rigidbody missile;
-		missile = Instantiate (missilePrefab, transform.position, transform.rotation).GetComponent<Rigidbody> ();;
-		missile.velocity = transform.TransformDirection (Vector3.forward * missileSpeed);
-		fireTime = fireRate;
-		ammo -= 1;
 	}
 }
