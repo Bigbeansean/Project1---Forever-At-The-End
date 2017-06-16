@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionAnimController : MonoBehaviour {
+public class ExplosionAnimController : MonoBehaviour
+{
 
 	public float timeToExplosion;
 	public float counter;
 	public float min = 1, max = 2;
-	public AnimationCurve remapCurve = AnimationCurve.Linear(0, 0, 1, 1);
+	public AnimationCurve remapCurve = AnimationCurve.Linear (0, 0, 1, 1);
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		counter += Time.deltaTime;
 		counter %= (timeToExplosion * 2);
 

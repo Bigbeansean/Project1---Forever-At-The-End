@@ -2,30 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class _NukeSpawner : MonoBehaviour {
+public class _NukeSpawner : MonoBehaviour
+{
 
 	public GameObject nukePrefab;
 	public float fireTime;
 	public float fireRate;
 	public float nukeSpeed;
+	public float minSpawnTime;
+	public float maxSpawnTime;
+	public float spawnTimeDecrease;
+
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		fireTime -= Time.deltaTime;
+		minSpawnTime -= spawnTimeDecrease * Time.deltaTime;
+		maxSpawnTime -= spawnTimeDecrease * Time.deltaTime;
 		if (fireTime <= 0) {
-			FireNuke();
+			FireNuke ();
 		}
 	}
 
-	void FireNuke(){
+	void FireNuke ()
+	{
 		Rigidbody nuke;
-		nuke = Instantiate (nukePrefab, transform.position, transform.rotation).GetComponent<Rigidbody> ();;
+		nuke = Instantiate (nukePrefab, transform.position, transform.rotation).GetComponent<Rigidbody> ();
+		;
 		nuke.velocity = transform.TransformDirection (Vector3.forward * nukeSpeed);
-		fireTime = fireRate;
+		fireTime = Random.Range (minSpawnTime, maxSpawnTime);
 	}
 }

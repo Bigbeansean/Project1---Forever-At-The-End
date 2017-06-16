@@ -17,13 +17,21 @@ public class _MissileSpawner : MonoBehaviour
 			turret = "1";
 			keyboardInput = "f";
 		}
-		if (gameObject.transform.position.x == -4) {
+		if (gameObject.transform.position.x == -2) {
 			turret = "2";
 			keyboardInput = "d";
 		}
-		if (gameObject.transform.position.x == 4) {
+		if (gameObject.transform.position.x == 2) {
 			turret = "3";
 			keyboardInput = "g";
+		}
+		if (gameObject.transform.position.x == -4) {
+			turret = "4";
+			keyboardInput = "s";
+		}
+		if (gameObject.transform.position.x == 4) {
+			turret = "5";
+			keyboardInput = "h";
 		}
 	}
 	

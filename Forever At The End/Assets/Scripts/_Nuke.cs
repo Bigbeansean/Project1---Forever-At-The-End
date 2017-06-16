@@ -18,10 +18,12 @@ public class _Nuke : MonoBehaviour
 
 	public void OnTriggerEnter (Collider other)
 	{
-		_ZipVertical zipObject = GameObject.FindGameObjectWithTag("ZipTag").GetComponent<_ZipVertical> ();
-		if (other.gameObject.tag == "BrokenObelisk") 
-		{
-			zipObject.increaseSize (1,0);
+		_ZipVertical zipObject = GameObject.FindGameObjectWithTag ("ZipTag").GetComponent<_ZipVertical> ();
+		if (other.gameObject.tag == "BrokenObelisk") {
+			zipObject.increaseSize (1, 0);
+			Destroy (gameObject);		
+		}
+		if (other.gameObject.tag == "Explosion") {
 			Destroy (gameObject);		
 		}
 	}

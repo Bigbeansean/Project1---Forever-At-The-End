@@ -9,12 +9,16 @@ public class CursorHold : MonoBehaviour
 	public float maxRange;
 	public float explosionRange;
 	public float explosionRangeModifier;
-
+	public float explosionMultiplier;
 
 	public GameObject explosionPrefab;
 
+	public GameObject obeliskPrefab;
+	public GameObject[] obelisks;
+
 	public string turretSelect;
 
+	public int numberObelisks;
 
 	// Use this for initialization
 	void Start ()
@@ -26,11 +30,11 @@ public class CursorHold : MonoBehaviour
 	void Update ()
 	{
 		transform.Translate (Vector3.up * cursorSpeed * Time.deltaTime);
-
+		obelisks = GameObject.FindGameObjectsWithTag ("BrokenObelisk");
+		numberObelisks = obelisks.Length;
 		if (transform.position.y >= maxRange) {
 			DestroySelf ();
 		}
-
 		if (Input.GetKeyUp (turretSelect)) {
 			DestroySelf ();
 		}
@@ -38,8 +42,8 @@ public class CursorHold : MonoBehaviour
 
 	public void DestroySelf ()
 	{
-		_ZipVertical zipObject = GameObject.FindGameObjectWithTag("ZipTag").GetComponent<_ZipVertical> ();
-		zipObject.increaseSize (2,(explosionRange - transform.position.y) * 0.1f);
+		_ZipVertical zipObject = GameObject.FindGameObjectWithTag ("ZipTag").GetComponent<_ZipVertical> ();
+		zipObject.increaseSize (2, (explosionRange - transform.position.y) * explosionMultiplier / numberObelisks);
 		Instantiate (explosionPrefab, transform.position, Quaternion.identity);
 		Destroy (gameObject);
 	}
