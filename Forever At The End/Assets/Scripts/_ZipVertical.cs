@@ -14,6 +14,7 @@ public class _ZipVertical : MonoBehaviour
 	public bool idle;
 	public float obeliskSpawn1;
 	public float obeliskSpawn2;
+	public float maxSize;
 	public bool spawn1;
 	public bool spawn2;
 
@@ -35,15 +36,20 @@ public class _ZipVertical : MonoBehaviour
 		}
 
 		if (transform.localScale.x >= obeliskSpawn1 && spawn1 == false) {
-			GameObject.Instantiate (brokenObeliskPrefab, new Vector3 (2, 0.1f, 0), Quaternion.identity);
-			GameObject.Instantiate (brokenObeliskPrefab, new Vector3 (-2, 0.1f, 0), Quaternion.identity);
+			GameObject.Instantiate (brokenObeliskPrefab, new Vector3 (2, -0.4f, 0), Quaternion.identity);
+			GameObject.Instantiate (brokenObeliskPrefab, new Vector3 (-2, -0.4f, 0), Quaternion.identity);
 			spawn1 = true;
 		}
 		if (transform.localScale.x >= obeliskSpawn2 && spawn2 == false) {
-			GameObject.Instantiate (brokenObeliskPrefab, new Vector3 (4, 0.1f, 0), Quaternion.identity);
-			GameObject.Instantiate (brokenObeliskPrefab, new Vector3 (-4, 0.1f, 0), Quaternion.identity);
+			GameObject.Instantiate (brokenObeliskPrefab, new Vector3 (4, -0.4f, 0), Quaternion.identity);
+			GameObject.Instantiate (brokenObeliskPrefab, new Vector3 (-4, -0.4f, 0), Quaternion.identity);
 			spawn2 = true;
 		}
+
+		if (transform.localScale.x >= maxSize) {
+			EndGame ();
+		}
+	
 	}
 
 	public void increaseSize (int increaseType, float rangeIncrease)
@@ -62,11 +68,11 @@ public class _ZipVertical : MonoBehaviour
 	void InstantiateObelisk ()
 	{
 		idle = true;
-		GameObject.Instantiate (brokenObeliskPrefab, new Vector3 (transform.position.x, 0.1f, 0), Quaternion.identity);
+		GameObject.Instantiate (brokenObeliskPrefab, new Vector3 (transform.position.x, -0.4f, 0), Quaternion.identity);
 	}
 
 	void EndGame ()
 	{
-
+		Destroy (gameObject);
 	}
 }

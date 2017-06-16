@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class _Nuke : MonoBehaviour
 {
+
+	public GameObject miniExplosionPrefab;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -24,6 +27,7 @@ public class _Nuke : MonoBehaviour
 			Destroy (gameObject);		
 		}
 		if (other.gameObject.tag == "Explosion") {
+			GameObject.Instantiate (miniExplosionPrefab, transform.position, Quaternion.identity);
 			Destroy (gameObject);		
 		}
 	}
