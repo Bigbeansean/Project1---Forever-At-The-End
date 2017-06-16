@@ -13,16 +13,16 @@ public class CursorHold : MonoBehaviour
 
 	public GameObject explosionPrefab;
 
-	public GameObject obeliskPrefab;
-	public GameObject[] obelisks;
+	public int numberObelisks;
 
 	public string turretSelect;
-
-	public int numberObelisks;
 
 	// Use this for initialization
 	void Start ()
 	{
+		_GameManager gameManagerObject = GameObject.FindGameObjectWithTag ("GameController").GetComponent<_GameManager> ();
+		numberObelisks = gameManagerObject.numberObelisks;
+	
 		explosionRange = maxRange + explosionRangeModifier;
 	}
 
@@ -30,8 +30,7 @@ public class CursorHold : MonoBehaviour
 	void Update ()
 	{
 		transform.Translate (Vector3.up * cursorSpeed * Time.deltaTime);
-		obelisks = GameObject.FindGameObjectsWithTag ("BrokenObelisk");
-		numberObelisks = obelisks.Length;
+
 		if (transform.position.y >= maxRange) {
 			DestroySelf ();
 		}

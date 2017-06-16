@@ -6,13 +6,19 @@ public class _MissileSpawner : MonoBehaviour
 {
 	private GameObject clone;
 	public GameObject cursorPrefab;
+
+	public GameObject cursorNewPrefab;
+	public GameObject[] cursors;
+
 	public float missileSpeed;
 	public string turret;
 	public string keyboardInput;
+	public int numberCursors;
 
 	// Use this for initialization
 	void Start ()
 	{ 
+
 		if (gameObject.transform.position.x == 0) {
 			turret = "1";
 			keyboardInput = "f";
@@ -42,6 +48,7 @@ public class _MissileSpawner : MonoBehaviour
 			clone = Instantiate (cursorPrefab, transform.position, Quaternion.identity);
 			CursorHold cursorHold = clone.GetComponent<CursorHold> ();
 			cursorHold.turretSelect = keyboardInput;
+
 		}
 	}
 }

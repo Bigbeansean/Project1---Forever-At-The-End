@@ -10,6 +10,8 @@ public class ExplosionAnimController : MonoBehaviour
 	public float min = 1, max = 2;
 	public AnimationCurve remapCurve = AnimationCurve.Linear (0, 0, 1, 1);
 
+	public bool hit;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -28,7 +30,19 @@ public class ExplosionAnimController : MonoBehaviour
 		transform.localScale = Vector3.one * Mathf.LerpUnclamped (min, max, p);
 
 		if (counter >= timeToExplosion) {
+			if (hit == false) 
+			{
+				_GameManager gameManagerObject = GameObject.FindGameObjectWithTag ("GameController").GetComponent<_GameManager> ();
+				gameManagerObject.DecreaseMultiplier ();
+			}
 			Destroy (gameObject);
+		}
+	}
+
+	public void OnTriggerEnter (Collider other)
+	{
+		if (other.gameObject.tag == "Nuke") {
+			hit = true;
 		}
 	}
 }
