@@ -33,7 +33,7 @@ public class ExplosionAnimController : MonoBehaviour
 			if (hit == false) 
 			{
 				_GameManager gameManagerObject = GameObject.FindGameObjectWithTag ("GameController").GetComponent<_GameManager> ();
-				gameManagerObject.DecreaseMultiplier ();
+				gameManagerObject.DecreaseMultiplier (2);
 			}
 			Destroy (gameObject);
 		}

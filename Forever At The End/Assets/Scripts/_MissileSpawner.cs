@@ -15,10 +15,12 @@ public class _MissileSpawner : MonoBehaviour
 	public string keyboardInput;
 	public int numberCursors;
 
+
+
 	// Use this for initialization
 	void Start ()
 	{ 
-
+		
 		if (gameObject.transform.position.x == 0) {
 			turret = "1";
 			keyboardInput = "f";
@@ -44,6 +46,10 @@ public class _MissileSpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		_GameManager gameManagerObject = GameObject.FindGameObjectWithTag ("GameController").GetComponent<_GameManager> ();
+		if (gameManagerObject.endGame == true) {
+			Destroy (gameObject);
+		}
 		if (Input.GetKeyDown (keyboardInput)) {
 			clone = Instantiate (cursorPrefab, transform.position, Quaternion.identity);
 			CursorHold cursorHold = clone.GetComponent<CursorHold> ();

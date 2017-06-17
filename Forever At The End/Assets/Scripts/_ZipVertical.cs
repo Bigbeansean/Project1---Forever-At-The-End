@@ -62,7 +62,6 @@ public class _ZipVertical : MonoBehaviour
 			transform.localScale += new Vector3 (rangeIncrease, 0, 0);
 			break;
 		}
-	
 	}
 
 	void InstantiateObelisk ()
@@ -73,6 +72,7 @@ public class _ZipVertical : MonoBehaviour
 
 	void EndGame ()
 	{
-		Destroy (gameObject);
+		_GameManager gameManagerObject = GameObject.FindGameObjectWithTag ("GameController").GetComponent<_GameManager> ();
+		gameManagerObject.EndGame ();
 	}
 }

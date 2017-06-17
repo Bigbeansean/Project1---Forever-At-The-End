@@ -29,6 +29,11 @@ public class CursorHold : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		_GameManager gameManagerObject = GameObject.FindGameObjectWithTag ("GameController").GetComponent<_GameManager> ();
+		if (gameManagerObject.endGame == true) {
+			GameObject.Instantiate (explosionPrefab, transform.position, Quaternion.identity);
+			Destroy (gameObject);
+		}
 		transform.Translate (Vector3.up * cursorSpeed * Time.deltaTime);
 
 		if (transform.position.y >= maxRange) {
