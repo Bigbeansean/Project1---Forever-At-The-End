@@ -9,11 +9,6 @@ public class _Nuke : MonoBehaviour
 	public GameObject miniExplosionPrefab;
 	public GameObject explosionPrefab;
 
-	public Renderer rend;
-	public Material middleMat;
-	public Material leftRightMat;
-	public Material farLeftRighMat;
-
 	public int scoreIncrease;
 
 
@@ -22,18 +17,6 @@ public class _Nuke : MonoBehaviour
 	void Start ()
 	{
 
-		rend = GetComponent<Renderer> ();
-		rend.enabled = true;
-
-		if (transform.position.x == 0) {
-			rend.material = middleMat;
-		}
-		if (transform.position.x == -2 || transform.position.x == 2) {
-			rend.material = leftRightMat;
-		}
-		if (transform.position.x == -4 || transform.position.x == 4) {
-			rend.material = farLeftRighMat;
-		}
 	}
 
 	// Update is called once per frame
